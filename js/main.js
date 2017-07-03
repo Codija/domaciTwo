@@ -51,29 +51,42 @@ function selectWords() {
 
 function deletePlayers() {
     deletePlayer = document.getElementById('playerList').value;
-    deleteThisPlayer = playerArray.indexOf(deletePlayer);
-    playerArray.splice(deleteThisPlayer, 1);
-    localStorage.setItem('insertPlayersToLS', JSON.stringify(playerArray));
-    document.getElementById('playerList').value = '';
-    location.reload();
+    if(playerArray.indexOf(deletePlayer) > -1) {
+        deleteThisPlayer = playerArray.indexOf(deletePlayer);
+        playerArray.splice(deleteThisPlayer, 1);
+        localStorage.setItem('insertPlayersToLS', JSON.stringify(playerArray));
+        document.getElementById('playerList').value = '';
+        location.reload();
+    }
 };
 
 function deleteWords() {
     deleteWord = document.getElementById('wordList').value;
-    deleteThisWord = wordArray.indexOf(deleteWord);
-    wordArray.splice(deleteThisWord, 1);
-    localStorage.setItem('insertWordsToLS', JSON.stringify(wordArray));
-    document.getElementById('wordList').value = '';
-    location.reload();
+    if(wordArray.indexOf(deleteWord) > -1) {
+        deleteThisWord = wordArray.indexOf(deleteWord);
+        wordArray.splice(deleteThisWord, 1);
+        localStorage.setItem('insertWordsToLS', JSON.stringify(wordArray));
+        document.getElementById('wordList').value = '';
+        location.reload();
+    }
 };
 
 function startGame() {
     document.getElementById('firstScreen').style.display = 'none';
     document.getElementById('secondScreen').style.display = 'block';
+    document.getElementById('toggleTable').style.display = 'none';
     selectedPlayer = document.getElementById('playerList').value;
     addedWord = document.getElementById('wordList').value;
-
-    if(wordArray.indexOf(addedWord) > -1) {
+    if(selectedPlayer < 1) {
+        alert('Please select player');
+        document.getElementById('firstScreen').style.display = 'block';
+        document.getElementById('secondScreen').style.display = 'none';
+        return false;
+    }else if(addedWord < 1) {
+        alert('Please select starting word');
+        document.getElementById('firstScreen').style.display = 'block';
+        document.getElementById('secondScreen').style.display = 'none';
+    }else if(wordArray.indexOf(addedWord) > -1) {
         for (var i = 0; i < addedWord.length; i++) {
             joinWords[i] = '_';
         }
@@ -110,6 +123,7 @@ function checkLetters() {
         document.getElementById('showWords').style.display = 'none';
         document.getElementById('times').style.display = 'none';
         document.getElementById('enterLetter').disabled = 'disabled';
+        document.getElementById('toggleTable').style.display = 'block';
         clearInterval(interval);
     }
     if(addedWord === joinWords.join('')) {
@@ -148,6 +162,7 @@ function continueGame() {
         document.getElementById('showWords').style.display = 'none';
         document.getElementById('continueTheGame').disabled = true;
         document.getElementById('leaderBoard').style.display = 'none';
+        document.getElementById('toggleTable').style.display = 'block';
         clearInterval(interval);
         alert('Congratulations ' + selectedPlayer + ' You won!');
         checkSavedPlayers = scoreArray.map(function(getPlayer) {
