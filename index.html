@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hangman</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+	<div id="wrapper">
+		<div id="firstScreen">
+			<h1 class="title">Welcome to hangman!</h1>
+			<input type="text" id="playersInput" placeholder="Enter your name" />
+			<button onclick="addPlayers();">Add player</button><br>
+
+			<input type="text" id="wordInput" placeholder="Enter words for game" />
+			<button onclick="addWords();">Add word</button><br>
+
+			<input type="text" id="playerList" list="playersList" placeholder="Select your name" onkeyup="selectPlayer();" />
+			<datalist id="playersList"></datalist>
+			<button onclick="deletePlayers();">Delete player</button><br>
+
+			<input type="text" id="wordList" list="wordsList" value="" placeholder="Select starting word" onkeyup="selectWords();" />
+			<datalist id="wordsList"></datalist>
+			<button onclick="deleteWords();">Delete word</button><br>
+			<button id="start" onclick="startGame();">Start game</button>
+		</div>
+
+		<div id="secondScreen">
+			<input type="text" id="enterLetter" maxlength="1" minlength="1" onkeypress="checkLetters();" placeholder="Enter letter" />
+			<div id="showWords"></div>
+			<button id="continueTheGame" onclick="continueGame();">Next word</button>
+			<button id="toggleTable" onclick="showHideTable();">Show scores</button>
+			<button onclick="restartGame();">Main menu</button>
+			<div id="leaderBoard"></div>
+			<div class="rightDiv">
+				<div id="lives"></div>
+				<div id="times"></div>
+				<div id="totalScore"></div>
+				<ol id="lista">
+				</ol>
+			</div>
+		</div>
+	</div>
+	<script src="js/main.js"></script>
+</body>
+</html>

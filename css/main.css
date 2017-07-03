@@ -1,0 +1,44 @@
+#wrapper {
+	max-width: 900px;
+	height: 500px;
+	margin: 0 auto;
+	padding: 10px;
+}
+
+.title {
+	text-align: center;
+}
+
+input {
+	margin: 10px;
+}
+
+button {
+	width: 100px;
+}
+
+#start {
+	margin: 10px;
+}
+
+.rightDiv {
+	padding: 0 10px;
+	float: right;
+	position: absolute;
+	top: 6%;
+	right: 26%;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table, th, td {
+	border: 1px solid black;
+}
+
+#firstScreen {
+	background-image: url('../img/hangman.png');
+	background-repeat: no-repeat;
+	background-position: right;
+}
